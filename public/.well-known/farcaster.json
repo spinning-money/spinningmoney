@@ -7,7 +7,15 @@
     "homeUrl": "https://farcmoney.vercel.app",
     "splashImageUrl": "https://farcmoney.vercel.app/splash.png",
     "splashBackgroundColor": "#0f172a",
-    "tags": ["casino", "gaming", "ethereum", "base", "chainlink", "vrf", "provably-fair"],
+    "tags": [
+      "casino",
+      "gaming",
+      "ethereum",
+      "base",
+      "chainlink",
+      "vrf",
+      "provably-fair"
+    ],
     "heroImageUrl": "https://farcmoney.vercel.app/sharing-image.png",
     "ogImageUrl": "https://farcmoney.vercel.app/sharing-image.png",
     "castShareUrl": "https://farcmoney.vercel.app/share",
@@ -21,7 +29,9 @@
     "tagline": "Spin. Win. Claim.",
     "ogTitle": "Spinning Money",
     "ogDescription": "Provably fair crypto gaming on Base. Spin the wheel and win ETH!",
-    "requiredChains": ["eip155:8453"],
+    "requiredChains": [
+      "eip155:8453"
+    ],
     "requiredCapabilities": [
       "actions.signIn",
       "wallet.getEthereumProvider"
@@ -31,9 +41,10 @@
       "imageUrl": "https://farcmoney.vercel.app/sharing-image.png",
       "aspectRatio": "1.91:1",
       "button": {
-        "action": "link",
-        "label": "Play Now",
-        "target": "https://farcmoney.vercel.app"
+        "title": "Spin Now",
+        "action": {
+          "type": "launch_frame"
+        }
       }
     }
   }

@@ -13,9 +13,11 @@ const PRIZES = [
 
 interface SpinWheelProps {
   spinState: SpinState;
+  totalPool: string; // or number, depending on your state
+  jackpot: string;   // or number, depending on your state
 }
 
-const SpinWheel = ({ spinState }: SpinWheelProps) => {
+const SpinWheel = ({ spinState, totalPool, jackpot }: SpinWheelProps) => {
   const { isSpinning, targetAngle, resultReceived, prizeIndex } = spinState;
   const [currentRotation, setCurrentRotation] = useState(0);
   
@@ -103,6 +105,26 @@ const SpinWheel = ({ spinState }: SpinWheelProps) => {
 
   return (
     <div className="relative flex items-center justify-center w-full" style={{ maxWidth: size }}>
+      {/* Modern, real Total Pool & Jackpot bar (put this at the top, before the wheel) */}
+      <div className="w-full max-w-md mx-auto mt-8 mb-8">
+        <div className="flex items-center justify-between bg-gradient-to-r from-blue-600 via-purple-600 to-yellow-400 rounded-2xl shadow-xl px-8 py-5 border-4 border-white/10">
+          <div className="flex flex-col items-start">
+            <div className="text-xs font-semibold uppercase tracking-widest text-white/80">Total Pool</div>
+            <div className="text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-1 mt-1">
+              <span>Ξ</span>
+              <span className="tracking-tight">{totalPool}</span>
+            </div>
+          </div>
+          <div className="h-10 w-px bg-white/20 mx-6" />
+          <div className="flex flex-col items-end">
+            <div className="text-xs font-semibold uppercase tracking-widest text-white/80">Jackpot</div>
+            <div className="text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-1 mt-1">
+              <span>Ξ</span>
+              <span className="tracking-tight">{jackpot}</span>
+            </div>
+          </div>
+        </div>
+      </div>
       {/* Wheel Container - Both SVG and labels rotate together */}
       <div 
         className="relative"

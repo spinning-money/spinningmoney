@@ -1,26 +1,25 @@
 {
-  "frame": {
-    "name": "Spinning Money",
+  "miniapp": {
     "version": "1",
+    "name": "Spinning Money",
+    "description": "Spin the wheel and win ETH! Provably fair crypto gaming on Base. Every spin grows the prize pool - the more you play, the bigger the jackpot gets! All spins contribute to the pool and YOU could be the next big winner!",
     "iconUrl": "https://spinmoney.vercel.app/icon.png",
     "homeUrl": "https://spinmoney.vercel.app",
-    "imageUrl": "https://spinmoney.vercel.app/image.png",
-    "buttonTitle": "Spin To Win",
     "splashImageUrl": "https://spinmoney.vercel.app/splash.png",
     "splashBackgroundColor": "#0f172a",
+    "tags": ["casino", "gaming", "ethereum", "base", "chainlink", "vrf", "provably-fair"],
+    "heroImageUrl": "https://spinmoney.vercel.app/sharing-image.png",
+    "ogImageUrl": "https://spinmoney.vercel.app/sharing-image.png",
+    "castShareUrl": "https://spinmoney.vercel.app/share",
     "webhookUrl": "https://spinmoney.vercel.app/api/webhook",
-    "subtitle": "Connect and Spin Win",
-    "description": " Spin the wheel and win ETH! Provably fair crypto gaming on Base. Every spin grows the prize pool - the more you play, the bigger the jackpot gets! All spins contribute to the pool and YOU could be the next big winner! ",
+    "canonicalDomain": "spinmoney.vercel.app",
+    "screenshotUrls": [
+      "https://spinmoney.vercel.app/sharing-image.png"
+    ],
     "primaryCategory": "games",
-    "tagline": "gaming,ethereum,base,chainlink",
-    "tags": [],
-    "ogTitle": "Spinning Money - Spin To Win -",
-    "ogDescription": "Spin for big jackpot prizes. Remember, every spin makes a difference between your total prize pool.",
-    "ogImageUrl": "https://spinmoney.vercel.app/sharing-image.png"
-  },
-  "accountAssociation": {
-    "header": "eyJmaWQiOjExMTY3MDMsInR5cGUiOiJhdXRoIiwia2V5IjoiMHhmZTllOWU2N0E1MjJkRmJENWRhOTc2QzQ5QzNhN0ZlYzhGOGVDODY0In0",
-    "payload": "eyJkb21haW4iOiJzcGlubW9uZXkudmVyY2VsLmFwcCJ9",
-    "signature": "bAakEHBuUyPcOOF+fMKBEq8ZIvxe/TOp89ZEiwnpozxi0lWpF6RuHansFDNjRpZ32jobDfcFSGFtx6ZJtY2/xRw="
+    "subtitle": "Provably fair crypto gaming",
+    "tagline": "Spin. Win. Claim.",
+    "ogTitle": "Spinning Money",
+    "ogDescription": "Provably fair crypto gaming on Base. Spin the wheel and win ETH!"
   }
 }

@@ -104,22 +104,22 @@ const SpinWheel = ({ spinState, totalPool, jackpot }: SpinWheelProps) => {
   const resultMessage = getResultMessage();
 
   return (
-    <div className="relative flex items-center justify-center w-full" style={{ maxWidth: size }}>
-      {/* Modern, real Total Pool & Jackpot bar (put this at the top, before the wheel) */}
-      <div className="w-full max-w-md mx-auto mt-8 mb-8">
-        <div className="flex items-center justify-between bg-gradient-to-r from-blue-600 via-purple-600 to-yellow-400 rounded-2xl shadow-xl px-8 py-5 border-4 border-white/10">
+    <div className="relative flex flex-col items-center w-full">
+      {/* Modern, real Total Pool & Jackpot bar (only real data, more stylish) */}
+      <div className="w-full max-w-md mx-auto pt-4 pb-6">
+        <div className="flex items-center justify-between bg-gradient-to-r from-blue-600 via-purple-600 to-yellow-400 rounded-3xl shadow-2xl px-10 py-6 border-4 border-white/10">
           <div className="flex flex-col items-start">
             <div className="text-xs font-semibold uppercase tracking-widest text-white/80">Total Pool</div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-1 mt-1">
+            <div className="text-3xl sm:text-4xl font-extrabold text-white flex items-center gap-2 mt-1 drop-shadow-lg">
               <span>Ξ</span>
               <span className="tracking-tight">{totalPool}</span>
             </div>
           </div>
-          <div className="h-10 w-px bg-white/20 mx-6" />
+          <div className="h-12 w-px bg-white/20 mx-8" />
           <div className="flex flex-col items-end">
             <div className="text-xs font-semibold uppercase tracking-widest text-white/80">Jackpot</div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-1 mt-1">
-              <span>Ξ</span>
+            <div className="text-3xl sm:text-4xl font-extrabold text-yellow-300 flex items-center gap-2 mt-1 drop-shadow-lg">
+              <span role='img' aria-label='slot'>🎰</span>
               <span className="tracking-tight">{jackpot}</span>
             </div>
           </div>

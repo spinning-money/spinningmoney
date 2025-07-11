@@ -62,13 +62,6 @@ function MainApp() {
     <div className="min-h-screen w-full bg-gradient-to-b from-[#181A20] to-[#232946] flex flex-col items-center justify-start pb-8 pt-safe-top">
       {/* Üst Bilgi */}
       <div className="w-full flex flex-col items-center pt-6 pb-2 px-4 relative">
-        <div className="text-3xl font-extrabold text-yellow-400 drop-shadow-sm mb-1">
-          {parseFloat(prizePool).toFixed(4)} ETH
-        </div>
-        <div className="flex items-center gap-2 text-yellow-300 text-base font-semibold mb-2">
-          <span role="img" aria-label="jackpot">🏆</span>
-          Jackpot: {parseFloat(jackpotPool).toFixed(4)} ETH
-        </div>
         {/* Cüzdan Badge */}
         {address && (
           <div className="absolute right-4 top-6 bg-green-600/90 text-white text-xs font-mono px-3 py-1 rounded-full shadow-md">
@@ -95,7 +88,7 @@ function MainApp() {
 
       {/* Çark */}
       <div className="w-full flex justify-center items-center mb-6">
-        <SpinWheel spinState={spinState} />
+        <SpinWheel spinState={spinState} totalPool={parseFloat(prizePool).toFixed(4)} jackpot={parseFloat(jackpotPool).toFixed(4)} />
       </div>
 
       {/* Chainlink VRF etiketi */}
@@ -116,7 +109,7 @@ function MainApp() {
           isConnected={isConnected}
           isLoading={isLoading}
           canSpin={!isPaused && !isLoading && !spinState.isSpinning}
-          canClaim={userData && parseFloat(userData.claimable) > 0}
+          canClaim={!!userData && parseFloat(userData.claimable) > 0}
           claimableAmount={userData ? userData.claimable : '0'}
           onConnect={connectFarcaster}
           onSpin={enhancedSpin}

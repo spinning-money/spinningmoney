@@ -1,47 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/icon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
-    <meta name="format-detection" content="telephone=no" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spinning Money - Spin to Win ETH!</title>
     
-    <title>Spinning Money - Farcaster Miniapp</title>
-    <meta name="title" content="Spinning Money - Farcaster Miniapp" />
-    <meta name="description" content="🎰 Spin the wheel and win ETH! Provably fair crypto gaming on Base. Every spin grows the prize pool - the more you play, the bigger the jackpot gets! All spins contribute to the pool and YOU could be the next big winner! 🤑🔥" />
-    <meta name="keywords" content="farcaster, miniapp, spin wheel, gambling, chainlink, vrf, base, ethereum, casino, gaming, provably-fair" />
-    <meta name="author" content="Spinning Money Team" />
+    <!-- Farcaster Meta Tags -->
+    <meta name="farcaster:app" content="spinning-money" />
+    <link rel="icon" type="image/png" href="https://spinmoney.vercel.app/icon.png">
     
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Spinning Money - Spin to Win ETH!" />
+    <meta property="og:description" content="🎰 Spin the wheel and win ETH! Provably fair crypto gaming on Base. Every spin grows the prize pool - the more you play, the bigger the jackpot gets! All spins contribute to the pool and YOU could be the next big winner! 🤑🔥" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://spinmoney.vercel.app/" />
-    <meta property="og:title" content="Spinning Money - Farcaster Miniapp" />
-    <meta property="og:description" content="🎰 Spin the wheel and win ETH! Provably fair crypto gaming on Base. Every spin grows the prize pool - the more you play, the bigger the jackpot gets! All spins contribute to the pool and YOU could be the next big winner! 🤑🔥" />
+    <meta property="og:site_name" content="Spinning Money" />
     <meta property="og:image" content="https://spinmoney.vercel.app/sharing-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:site_name" content="Spinning Money" />
     
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://spinmoney.vercel.app/" />
-    <meta property="twitter:title" content="Spinning Money - Farcaster Miniapp" />
-    <meta property="twitter:description" content="🎰 Spin the wheel and win ETH! Provably fair crypto gaming on Base. Every spin grows the prize pool - the more you play, the bigger the jackpot gets! All spins contribute to the pool and YOU could be the next big winner! 🤑🔥" />
-    <meta property="twitter:image" content="https://spinmoney.vercel.app/sharing-image.png" />
-    <meta property="twitter:creator" content="@spinningmoney" />
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Spinning Money - Spin to Win ETH!" />
+    <meta name="twitter:description" content="🎰 Spin the wheel and win ETH! Provably fair crypto gaming on Base. Every spin grows the prize pool - the more you play, the bigger the jackpot gets! All spins contribute to the pool and YOU could be the next big winner! 🤑🔥" />
+    <meta name="twitter:url" content="https://spinmoney.vercel.app/" />
+    <meta name="twitter:site" content="@spinningmoney" />
+    <meta name="twitter:image" content="https://spinmoney.vercel.app/sharing-image.png" />
     
-    <!-- Farcaster Miniapp Meta Tags -->
-    <meta name="farcaster:miniapp" content="true" />
-    <meta name="farcaster:miniapp:name" content="Spinning Money" />
-    <meta name="farcaster:miniapp:version" content="1.0.0" />
-    <meta name="farcaster:miniapp:description" content="🎰 Spin the wheel and win ETH! Provably fair crypto gaming on Base. Every spin grows the prize pool - the more you play, the bigger the jackpot gets! All spins contribute to the pool and YOU could be the next big winner! 🤑🔥" />
-    <meta name="farcaster:miniapp:icon" content="https://spinmoney.vercel.app/icon.png" />
-    <meta name="farcaster:miniapp:home" content="https://spinmoney.vercel.app" />
-    <meta name="farcaster:miniapp:splash" content="https://spinmoney.vercel.app/splash.png" />
-    <meta name="farcaster:miniapp:permissions" content="ethereum" />
-    <meta name="farcaster:miniapp:chains" content="base" />
-    <meta name="farcaster:miniapp:features" content="wallet_connect,ethereum_transactions" />
+    <!-- Farcaster Mini App Meta Tags -->
+    <meta name="fc:miniapp" content='{"version":"1","imageUrl":"https://spinmoney.vercel.app/sharing-image.png","button":{"title":"🎰 Spin to Win!","action":{"type":"launch_miniapp","url":"https://spinmoney.vercel.app","name":"Spinning Money","splashImageUrl":"https://spinmoney.vercel.app/splash.png","splashBackgroundColor":"#0f172a"}}}' />
     
     <!-- Farcaster Embed Meta Tag -->
     <meta name="fc:frame" content="vNext" />
@@ -49,135 +37,22 @@
     <meta name="fc:frame:button:1" content="🎰 Spin to Win!" />
     <meta name="fc:frame:post_url" content="https://spinmoney.vercel.app" />
     
-    <!-- PWA Meta Tags -->
+    <!-- Additional Meta Tags -->
+    <meta name="description" content="🎰 Spin the wheel and win ETH! Provably fair crypto gaming on Base. Every spin grows the prize pool - the more you play, the bigger the jackpot gets! All spins contribute to the pool and YOU could be the next big winner! 🤑🔥" />
+    <meta name="keywords" content="crypto, gaming, ethereum, base, wheel, spin, win, jackpot, provably-fair, chainlink, vrf" />
+    <meta name="author" content="Spinning Money Team" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Theme Color -->
     <meta name="theme-color" content="#0f172a" />
     <meta name="msapplication-TileColor" content="#0f172a" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Spinning Money" />
     
-    <!-- Mobile Optimizations -->
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="application-name" content="Spinning Money" />
-    <meta name="msapplication-config" content="/browserconfig.xml" />
-    
-    <!-- Security -->
-    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="X-Frame-Options" content="DENY" />
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
-    <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https:; img-src 'self' data: blob: https:; connect-src 'self' https: wss:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https:;" />
-    
-    <!-- Preconnect for Performance -->
-    <link rel="preconnect" href="https://base-mainnet.g.alchemy.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://spinmoney.vercel.app" />
-    <link rel="dns-prefetch" href="https://base-mainnet.g.alchemy.com" />
-    <link rel="dns-prefetch" href="https://spinmoney.vercel.app" />
-    
-    <!-- Manifest -->
-    <link rel="manifest" href="/manifest.json" />
-    
-    <!-- Apple Touch Icons -->
-    <link rel="apple-touch-icon" href="/icon.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/icon.png" />
-    <link rel="apple-touch-icon" sizes="152x152" href="/icon.png" />
-    <link rel="apple-touch-icon" sizes="144x144" href="/icon.png" />
-    <link rel="apple-touch-icon" sizes="120x120" href="/icon.png" />
-    <link rel="apple-touch-icon" sizes="114x114" href="/icon.png" />
-    <link rel="apple-touch-icon" sizes="76x76" href="/icon.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="/icon.png" />
-    <link rel="apple-touch-icon" sizes="60x60" href="/icon.png" />
-    <link rel="apple-touch-icon" sizes="57x57" href="/icon.png" />
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/icon.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/icon.png" />
-    
-    <!-- Safe Area CSS -->
-    <style>
-      :root {
-        --safe-area-inset-top: env(safe-area-inset-top);
-        --safe-area-inset-bottom: env(safe-area-inset-bottom);
-        --safe-area-inset-left: env(safe-area-inset-left);
-        --safe-area-inset-right: env(safe-area-inset-right);
-      }
-      
-      body {
-        margin: 0;
-        padding: 0;
-        background: #0f172a;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        overflow-x: hidden;
-        color: #ffffff;
-      }
-      
-      #root {
-        min-height: 100vh;
-        padding-top: var(--safe-area-inset-top);
-        padding-bottom: var(--safe-area-inset-bottom);
-        padding-left: var(--safe-area-inset-left);
-        padding-right: var(--safe-area-inset-right);
-      }
-      
-      /* Prevent zoom on input focus */
-      input, textarea, select {
-        font-size: 16px !important;
-      }
-      
-      /* Disable text selection for better mobile UX */
-      * {
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-      
-      /* Allow text selection for specific elements */
-      input, textarea, [contenteditable] {
-        -webkit-user-select: text;
-        -moz-user-select: text;
-        -ms-user-select: text;
-        user-select: text;
-      }
-      
-      /* Loading animation */
-      .loading {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      }
-      
-      .spinner {
-        width: 50px;
-        height: 50px;
-        border: 3px solid #3b82f6;
-        border-top: 3px solid transparent;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-      }
-      
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-    </style>
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://mainnet.base.org" />
+    <link rel="preconnect" href="https://basescan.org" />
   </head>
   <body>
-    <div id="root">
-      <!-- Loading screen -->
-      <div class="loading">
-        <div class="spinner"></div>
-      </div>
-    </div>
+    <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
-</html> 
-    
+</html>

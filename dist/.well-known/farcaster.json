@@ -1,32 +1,34 @@
 {
-  "accountAssociation": {
-    "header": "eyJ0eXBlIjoiZmFyY2FzdGVyLW1pbmlhcHAtYXNzb2NpYXRpb24iLCJ2ZXJzaW9uIjoiMSJ9",
-    "payload": "eyJtaW5pYXBwIjp7Im5hbWUiOiJTcGlubmluZyBNb25leSIsImhvbWVVcmwiOiJodHRwczovL2ZhcmNtb25leS5jb20iLCJpY29uVXJsIjoiaHR0cHM6Ly9mYXJjbW9uZXkuY29tL2ljb24ucG5nIn0sImFjY291bnQiOnsiZmFyY2FzdGVySWQiOjE5NzQ1Nn19",
-    "signature": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1b"
+  "version": 1,
+  "name": "Spinning Money",
+  "description": "Spin the wheel and win ETH! Provably fair crypto gaming on Base. Every spin grows the prize pool - the more you play, the bigger the jackpot gets! All spins contribute to the pool and YOU could be the next big winner! 🤑🔥",
+  "iconUrl": "https://spinmoney.vercel.app/icon.png",
+  "homeUrl": "https://spinmoney.vercel.app",
+  "splashImageUrl": "https://spinmoney.vercel.app/splash.png",
+  "splashBackgroundColor": "#0f172a",
+  "app_id": "spinning-money",
+  "app_slug": "spinning-money",
+  "permissions": ["ethereum"],
+  "supported_chains": ["base"],
+  "features": ["wallet_connect", "ethereum_transactions"],
+  "tags": ["casino", "gaming", "ethereum", "base", "chainlink", "vrf", "provably-fair"],
+  "screenshots": [
+    "https://spinmoney.vercel.app/sharing-image.png"
+  ],
+  "heroImageUrl": "https://spinmoney.vercel.app/sharing-image.png",
+  "platform": "web",
+  "blockchain": "base",
+  "ogImageUrl": "https://spinmoney.vercel.app/sharing-image.png",
+  "castShareUrl": "https://spinmoney.vercel.app/share",
+  "author": {
+    "name": "Spinning Money Team",
+    "url": "https://spinmoney.vercel.app"
   },
-  "miniapp": {
-    "version": "1",
-    "name": "Spinning Money",
-    "description": "Spin the wheel and win ETH! Provably fair by Chainlink VRF",
-    "iconUrl": "https://farcmoney.com/icon.png",
-    "homeUrl": "https://farcmoney.com",
-    "canonicalDomain": "farcmoney.com",
-    "permissions": [
-      "farcaster://xmtp",
-      "farcaster://casts"
-    ],
-    "features": [
-      "wallet-connect",
-      "real-time-events",
-      "provably-fair"
-    ],
-    "metadata": {
-      "category": "gaming",
-      "tags": ["spin-wheel", "gambling", "chainlink", "vrf", "base"],
-      "author": "FarcMoney Team",
-      "version": "1.0.0",
-      "contractAddress": "0x501434B1eAa8A85dBAb5D6d933F2f22cb10e6253",
-      "chain": "base"
-    }
-  }
-} 
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spinning-money/farcmoney"
+  },
+  "license": "MIT",
+  "webhookUrl": "https://spinmoney.vercel.app/api/webhook",
+  "canonicalDomain": "spinmoney.vercel.app"
+}

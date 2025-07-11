@@ -1,52 +1,52 @@
 {
   "name": "Spinning Money - Farcaster Miniapp",
   "short_name": "Spinning Money",
-  "description": "Spin the wheel and win ETH! Provably fair by Chainlink VRF. Play on Farcaster!",
+  "description": "🎰 Spin the wheel and win ETH! Provably fair crypto gaming on Base. Every spin grows the prize pool - the more you play, the bigger the jackpot gets! All spins contribute to the pool and YOU could be the next big winner! 🤑🔥",
   "version": "1.0.0",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "theme_color": "#181A20",
-  "background_color": "#181A20",
+  "theme_color": "#0f172a",
+  "background_color": "#0f172a",
   "scope": "/",
   "lang": "en",
-  "categories": ["games", "entertainment", "finance"],
+  "categories": ["games", "entertainment", "finance", "casino"],
   "icons": [
     {
-      "src": "/icon.svg",
+      "src": "/icon.png",
       "sizes": "any",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/icon.svg",
+      "src": "/icon.png",
       "sizes": "512x512",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon.svg",
+      "src": "/icon.png",
       "sizes": "192x192",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon.svg",
+      "src": "/icon.png",
       "sizes": "144x144",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any"
     }
   ],
   "screenshots": [
     {
-      "src": "/screenshot-wide.png",
-      "sizes": "1280x720",
+      "src": "/sharing-image.png",
+      "sizes": "1200x630",
       "type": "image/png",
       "form_factor": "wide",
       "label": "Spinning Money Game Interface"
     },
     {
-      "src": "/screenshot-narrow.png",
+      "src": "/splash.png",
       "sizes": "750x1334",
       "type": "image/png",
       "form_factor": "narrow",
@@ -61,7 +61,7 @@
       "url": "/?action=spin",
       "icons": [
         {
-          "src": "/icon.svg",
+          "src": "/icon.png",
           "sizes": "96x96"
         }
       ]
@@ -73,7 +73,7 @@
       "url": "/?action=claim",
       "icons": [
         {
-          "src": "/icon.svg",
+          "src": "/icon.png",
           "sizes": "96x96"
         }
       ]

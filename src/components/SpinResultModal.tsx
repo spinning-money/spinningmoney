@@ -9,7 +9,7 @@ interface SpinResultModalProps {
   result: SpinResult | null;
   userAddress?: string;
 }
-
+ 
 const PRIZES = [
   { name: '0.05 ETH', color: '#FF6B6B', icon: Trophy, emoji: '🏆' },
   { name: '0.01 ETH', color: '#4ECDC4', icon: Coins, emoji: '💰' },

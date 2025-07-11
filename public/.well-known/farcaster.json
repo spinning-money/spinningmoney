@@ -25,6 +25,16 @@
     "requiredCapabilities": [
       "actions.signIn",
       "wallet.getEthereumProvider"
-    ]
+    ],
+    "embed": {
+      "version": "1",
+      "imageUrl": "https://farcmoney.vercel.app/sharing-image.png",
+      "aspectRatio": "1.91:1",
+      "button": {
+        "action": "link",
+        "label": "Play Now",
+        "target": "https://farcmoney.vercel.app"
+      }
+    }
   }
 }

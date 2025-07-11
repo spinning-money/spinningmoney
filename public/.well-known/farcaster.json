@@ -3,9 +3,9 @@
     "version": "1",
     "name": "Spinning Money",
     "description": "Spin the wheel and win ETH! Provably fair crypto gaming on Base. Every spin grows the prize pool - the more you play, the bigger the jackpot gets!",
-    "iconUrl": "https://farcmoney.vercel.app/icon.png",
-    "homeUrl": "https://farcmoney.vercel.app",
-    "splashImageUrl": "https://farcmoney.vercel.app/splash.png",
+    "iconUrl": "https://spinmoney.vercel.app/icon.png",
+    "homeUrl": "https://spinmoney.vercel.app",
+    "splashImageUrl": "https://spinmoney.vercel.app/splash.png",
     "splashBackgroundColor": "#0f172a",
     "tags": [
       "casino",
@@ -16,13 +16,13 @@
       "vrf",
       "provably-fair"
     ],
-    "heroImageUrl": "https://farcmoney.vercel.app/sharing-image.png",
-    "ogImageUrl": "https://farcmoney.vercel.app/sharing-image.png",
-    "castShareUrl": "https://farcmoney.vercel.app/share",
-    "webhookUrl": "https://farcmoney.vercel.app/api/webhook",
-    "canonicalDomain": "farcmoney.vercel.app",
+    "heroImageUrl": "https://spinmoney.vercel.app/sharing-image.png",
+    "ogImageUrl": "https://spinmoney.vercel.app/sharing-image.png",
+    "castShareUrl": "https://spinmoney.vercel.app/share",
+    "webhookUrl": "https://spinmoney.vercel.app/api/webhook",
+    "canonicalDomain": "spinmoney.vercel.app",
     "screenshotUrls": [
-      "https://farcmoney.vercel.app/sharing-image.png"
+      "https://spinmoney.vercel.app/sharing-image.png"
     ],
     "primaryCategory": "games",
     "subtitle": "Provably fair crypto gaming",
@@ -38,7 +38,7 @@
     ],
     "embed": {
       "version": "1",
-      "imageUrl": "https://farcmoney.vercel.app/sharing-image.png",
+      "imageUrl": "https://spinmoney.vercel.app/sharing-image.png",
       "aspectRatio": "1.91:1",
       "button": {
         "title": "Spin Now",

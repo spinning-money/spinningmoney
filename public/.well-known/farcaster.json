@@ -42,4 +42,4 @@
     "chains": ["base"],
     "features": ["wallet_connect", "ethereum_transactions"]
   }
-} 
+}

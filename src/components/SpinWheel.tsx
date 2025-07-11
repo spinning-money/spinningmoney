@@ -13,9 +13,11 @@ const PRIZES = [
 
 interface SpinWheelProps {
   spinState: SpinState;
+  totalPool: string; // or number, depending on your state
+  jackpot: string;   // or number, depending on your state
 }
 
-const SpinWheel = ({ spinState }: SpinWheelProps) => {
+const SpinWheel = ({ spinState, totalPool, jackpot }: SpinWheelProps) => {
   const { isSpinning, targetAngle, resultReceived, prizeIndex } = spinState;
   const [currentRotation, setCurrentRotation] = useState(0);
   
@@ -113,10 +115,11 @@ const SpinWheel = ({ spinState }: SpinWheelProps) => {
               <span className="tracking-tight">{totalPool}</span>
             </div>
           </div>
+          <div className="h-10 w-px bg-white/20 mx-6" />
           <div className="flex flex-col items-end">
             <div className="text-xs font-semibold uppercase tracking-widest text-white/80">Jackpot</div>
-            <div className="text-2xl sm:text-3xl font-extrabold text-yellow-300 flex items-center gap-1 mt-1">
-              <span>🎰</span>
+            <div className="text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-1 mt-1">
+              <span>Ξ</span>
               <span className="tracking-tight">{jackpot}</span>
             </div>
           </div>

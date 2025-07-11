@@ -190,13 +190,25 @@ const SpinResultModal: React.FC<SpinResultModalProps> = ({
               
               {/* Share Button - Only show for winners */}
               {hasWon && isUserSpin && (
-                <button
-                  onClick={handleShare}
-                  className="px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white rounded-xl transition-all duration-200"
-                  title="Share your win!"
-                >
-                  <Share2 size={20} />
-                </button>
+                <>
+                  <button
+                    onClick={handleShare}
+                    className="px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white rounded-xl transition-all duration-200"
+                    title="Share your win!"
+                  >
+                    <Share2 size={20} />
+                  </button>
+                  <button
+                    onClick={() => {
+                      const text = encodeURIComponent(`🎉 Just won ${prize.name} (${formatEth(totalReward.toString())}) on Spinning Money! 🎰 Try your luck too!\n\nhttps://spinmoney.vercel.app/share?winner=true&prize=${encodeURIComponent(prize.name)}&amount=${encodeURIComponent(formatEth(totalReward.toString()))}`);
+                      window.open(`https://warpcast.com/~/compose?text=${text}`, '_blank');
+                    }}
+                    className="px-4 py-3 bg-[#6746f9] hover:bg-[#4b2bbd] text-white rounded-xl transition-all duration-200"
+                    title="Farcaster'da Paylaş"
+                  >
+                    <Share2 size={20} className="inline mr-1" /> Farcaster'da Paylaş
+                  </button>
+                </>
               )}
               
               <button

@@ -101,12 +101,6 @@ function MainApp() {
         )}
       </div>
 
-      {/* Başlık */}
-      <div className="w-full flex flex-col items-center mb-6">
-        <h1 className="text-2xl font-bold text-white tracking-tight mb-1">Spinning Money</h1>
-        <div className="text-sm text-white/70 mb-2">✨ Spin. Win. Claim. ✨</div>
-      </div>
-
       {/* Çark */}
       <div className="w-full flex justify-center items-center mb-6">
         <SpinWheel spinState={spinState} totalPool={parseFloat(prizePool).toFixed(4)} jackpot={parseFloat(jackpotPool).toFixed(4)} />

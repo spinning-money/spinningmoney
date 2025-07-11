@@ -34,7 +34,7 @@ const ShareButton: React.FC<ShareButtonProps> = ({
       type="button"
       className={getButtonClasses() + ' bg-[#6746f9] hover:bg-[#4b2bbd] text-white'}
       onClick={() => {
-        const text = encodeURIComponent('🎰 Just spun the wheel and won! Try your luck on Spinning Money - provably fair crypto gaming on Base! 🤑\n\nhttps://farcaster.xyz/miniapps/jxUXo76X96_-/spinning-money/share');
+        const text = encodeURIComponent('🎰 Just spun the wheel and won! Try your luck on Spinning Money - provably fair crypto gaming on Base! 🤑\n\nhttps://farcaster.xyz/miniapps/jxUXo76X96_-/spinning-money');
         window.open(`https://warpcast.com/~/compose?text=${text}`, '_blank');
       }}
     >

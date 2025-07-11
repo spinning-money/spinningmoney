@@ -7,6 +7,7 @@ interface GameButtonsProps {
   canSpin: boolean;
   canClaim: boolean;
   claimableAmount: string;
+  claimedAmount?: string;
   onConnect: () => void;
   onSpin: () => void;
   onClaim: () => void;
@@ -18,6 +19,7 @@ const GameButtons: React.FC<GameButtonsProps> = ({
   canSpin,
   canClaim,
   claimableAmount,
+  claimedAmount,
   onConnect,
   onSpin,
   onClaim
@@ -73,6 +75,12 @@ const GameButtons: React.FC<GameButtonsProps> = ({
             <div className="text-2xl font-bold text-yellow-400">
               {formatAmount(claimableAmount)}
             </div>
+            {claimedAmount && (
+              <div className="mt-2">
+                <div className="text-white/60 text-xs mb-0.5">Your Claimed</div>
+                <div className="text-lg font-semibold text-yellow-200">{formatAmount(claimedAmount)}</div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -81,25 +89,22 @@ const GameButtons: React.FC<GameButtonsProps> = ({
           disabled={isLoading || !canClaim}
           className="w-full bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-4 px-6 rounded-xl shadow-lg text-lg active:scale-95 transition-all duration-200"
         >
-          {isLoading ? 'Claiming...' : '💰 CLAIM REWARDS'}
+          {isLoading ? '💰 Claiming...' : '💰 CLAIM REWARDS'}
         </button>
 
         {!canClaim && parseFloat(claimableAmount) === 0 && (
-          <p className="text-white/60 text-sm text-center mt-2">
-            Spin to win and claim rewards!
+          <></>
+        )}
+        
+        {isLoading && parseFloat(claimableAmount) > 0 && (
+          <p className="text-yellow-300 text-sm text-center mt-2 animate-pulse">
+            ⏳ Processing claim transaction...
           </p>
         )}
       </div>
 
       {/* Game Info */}
-      <div className="text-center text-white/60 text-sm max-w-sm mt-2">
-        <p className="mb-1">
-          🎲 Each spin costs 0.0005 ETH
-        </p>
-        <p>
-          🏆 Higher prizes and jackpots await!
-        </p>
-      </div>
+      {/* Remove the info text section here */}
     </div>
   );
 };

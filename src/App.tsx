@@ -1,11 +1,14 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useFarcaster } from './hooks/useFarcaster';
 import { useSpinEvents } from './hooks/useSpinEvents';
 import { useFarcasterWallet } from './hooks/useFarcasterWallet';
 import SpinWheel from './components/SpinWheel';
 import GameButtons from './components/GameButtons';
+import ShareButton from './components/ShareButton';
+import SharePage from './components/SharePage';
 
-function App() {
+function MainApp() {
   // Initialize Farcaster wallet detection
   const { 
     address, 
@@ -108,7 +111,7 @@ function App() {
       </div>
 
       {/* Spin ve Claim Butonları */}
-      <div className="w-full flex flex-col items-center gap-3 px-4">
+      <div className="w-full flex flex-col items-center gap-3 px-4 mb-6">
         <GameButtons
           isConnected={isConnected}
           isLoading={isLoading}
@@ -120,7 +123,27 @@ function App() {
           onClaim={claim}
         />
       </div>
+
+      {/* Share Button */}
+      <div className="w-full flex justify-center px-4">
+        <ShareButton 
+          variant="outline" 
+          size="lg" 
+          className="w-full max-w-sm"
+        />
+      </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainApp />} />
+        <Route path="/share" element={<SharePage />} />
+      </Routes>
+    </Router>
   );
 }
 

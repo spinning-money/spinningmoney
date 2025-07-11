@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Trophy, Coins, Sparkles, X, ExternalLink } from 'lucide-react';
+import { Trophy, Coins, Sparkles, X, ExternalLink, Share2 } from 'lucide-react';
 import { SpinResult } from '../hooks/useWebSocket';
 
 interface SpinResultModalProps {
@@ -62,6 +62,26 @@ const SpinResultModal: React.FC<SpinResultModalProps> = ({
       return ['#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'];
     }
     return ['#F8F9FA', '#E9ECEF', '#DEE2E6', '#CED4DA'];
+  };
+
+  const handleShare = async () => {
+    try {
+      const shareUrl = `${window.location.origin}/share?winner=true&prize=${encodeURIComponent(prize.name)}&amount=${encodeURIComponent(formatEth(totalReward.toString()))}`;
+      
+      if (navigator.share) {
+        await navigator.share({
+          title: 'Spinning Money - I Just Won!',
+          text: `🎉 Just won ${prize.name} (${formatEth(totalReward.toString())}) on Spinning Money! 🎰 Try your luck too!`,
+          url: shareUrl
+        });
+      } else {
+        await navigator.clipboard.writeText(shareUrl);
+        // You could add a toast notification here
+        alert('Share link copied to clipboard!');
+      }
+    } catch (error) {
+      console.error('Error sharing:', error);
+    }
   };
 
   return (
@@ -167,6 +187,18 @@ const SpinResultModal: React.FC<SpinResultModalProps> = ({
               >
                 Continue Playing
               </button>
+              
+              {/* Share Button - Only show for winners */}
+              {hasWon && isUserSpin && (
+                <button
+                  onClick={handleShare}
+                  className="px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white rounded-xl transition-all duration-200"
+                  title="Share your win!"
+                >
+                  <Share2 size={20} />
+                </button>
+              )}
+              
               <button
                 onClick={() => {
                   window.open(`https://basescan.org/tx/${result.requestId}`, '_blank');

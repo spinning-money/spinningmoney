@@ -32,3 +32,4 @@
   "webhookUrl": "https://spinmoney.vercel.app/api/webhook",
   "canonicalDomain": "spinmoney.vercel.app"
 } 
+...

@@ -205,6 +205,26 @@ const SpinWheel = ({ spinState }: SpinWheelProps) => {
           <div className={`absolute inset-0 ${resultMessage.type === 'win' ? 'bg-green-400' : 'bg-red-400'} blur-xl opacity-30 rounded-2xl -z-10`}></div>
         </div>
       )}
+
+      {/* Modern Total Pool & Jackpot display (add this near the top of the return in your main render function) */}
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-6 my-8">
+        {/* Total Pool */}
+        <div className="bg-gradient-to-br from-blue-600 to-purple-600 text-white rounded-2xl shadow-xl px-8 py-6 flex flex-col items-center border-4 border-white/10">
+          <div className="text-lg font-semibold tracking-wide uppercase opacity-80">Total Pool</div>
+          <div className="text-3xl sm:text-4xl font-extrabold mt-2 flex items-center gap-2">
+            <span>Ξ</span>
+            <span className="tracking-tight">0.1234</span> {/* Replace with dynamic value */}
+          </div>
+        </div>
+        {/* Jackpot */}
+        <div className="bg-gradient-to-br from-yellow-400 to-orange-500 text-white rounded-2xl shadow-xl px-8 py-6 flex flex-col items-center border-4 border-white/10">
+          <div className="text-lg font-semibold tracking-wide uppercase opacity-80">Jackpot</div>
+          <div className="text-3xl sm:text-4xl font-extrabold mt-2 flex items-center gap-2">
+            <span>🎰</span>
+            <span className="tracking-tight">0.0500</span> {/* Replace with dynamic value */}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,42 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="240" fill="url(#gradient)" stroke="#232946" stroke-width="16"/>
+  
+  <!-- Wheel segments -->
+  <g transform="rotate(-90 256 256)">
+    <!-- 0.05 ETH - Red -->
+    <path d="M256 256 L256 16 A240 240 0 0 1 456.8 76.8 Z" fill="#FF6B6B"/>
+    <!-- 0.01 ETH - Orange -->
+    <path d="M256 256 L456.8 76.8 A240 240 0 0 1 456.8 435.2 Z" fill="#FF8C42"/>
+    <!-- 0.005 ETH - Green -->
+    <path d="M256 256 L456.8 435.2 A240 240 0 0 1 256 496 Z" fill="#6BCF7F"/>
+    <!-- 0.0025 ETH - Blue -->
+    <path d="M256 256 L256 496 A240 240 0 0 1 55.2 435.2 Z" fill="#4D96FF"/>
+    <!-- 0.0005 ETH - Purple -->
+    <path d="M256 256 L55.2 435.2 A240 240 0 0 1 55.2 76.8 Z" fill="#9B59B6"/>
+    <!-- 0.00005 ETH - Pink -->
+    <path d="M256 256 L55.2 76.8 A240 240 0 0 1 256 16 Z" fill="#E91E63"/>
+  </g>
+  
+  <!-- Center circle -->
+  <circle cx="256" cy="256" r="80" fill="white" stroke="#232946" stroke-width="8"/>
+  
+  <!-- ETH symbol -->
+  <text x="256" y="280" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#232946">⟨</text>
+  
+  <!-- Spinning arrows -->
+  <g transform="rotate(45 256 256)">
+    <path d="M256 80 L248 100 L264 100 Z" fill="#FFD700"/>
+    <path d="M256 432 L248 412 L264 412 Z" fill="#FFD700"/>
+    <path d="M80 256 L100 248 L100 264 Z" fill="#FFD700"/>
+    <path d="M432 256 L412 248 L412 264 Z" fill="#FFD700"/>
+  </g>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#181A20;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#232946;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg> 

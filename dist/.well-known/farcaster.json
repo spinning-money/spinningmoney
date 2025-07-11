@@ -1,0 +1,32 @@
+{
+  "accountAssociation": {
+    "header": "eyJ0eXBlIjoiZmFyY2FzdGVyLW1pbmlhcHAtYXNzb2NpYXRpb24iLCJ2ZXJzaW9uIjoiMSJ9",
+    "payload": "eyJtaW5pYXBwIjp7Im5hbWUiOiJTcGlubmluZyBNb25leSIsImhvbWVVcmwiOiJodHRwczovL2ZhcmNtb25leS5jb20iLCJpY29uVXJsIjoiaHR0cHM6Ly9mYXJjbW9uZXkuY29tL2ljb24ucG5nIn0sImFjY291bnQiOnsiZmFyY2FzdGVySWQiOjE5NzQ1Nn19",
+    "signature": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1b"
+  },
+  "miniapp": {
+    "version": "1",
+    "name": "Spinning Money",
+    "description": "Spin the wheel and win ETH! Provably fair by Chainlink VRF",
+    "iconUrl": "https://farcmoney.com/icon.png",
+    "homeUrl": "https://farcmoney.com",
+    "canonicalDomain": "farcmoney.com",
+    "permissions": [
+      "farcaster://xmtp",
+      "farcaster://casts"
+    ],
+    "features": [
+      "wallet-connect",
+      "real-time-events",
+      "provably-fair"
+    ],
+    "metadata": {
+      "category": "gaming",
+      "tags": ["spin-wheel", "gambling", "chainlink", "vrf", "base"],
+      "author": "FarcMoney Team",
+      "version": "1.0.0",
+      "contractAddress": "0x501434B1eAa8A85dBAb5D6d933F2f22cb10e6253",
+      "chain": "base"
+    }
+  }
+} 

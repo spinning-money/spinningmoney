@@ -1,20 +1,39 @@
 {
-  "frame": {
+  "miniapp": {
     "version": "1",
     "name": "Spinning Money",
+    "description": "🎰 Spin the wheel and win ETH! Provably fair crypto gaming on Base.",
     "iconUrl": "https://spinmoney.vercel.app/icon.png",
     "homeUrl": "https://spinmoney.vercel.app",
-    "imageUrl": "https://spinmoney.vercel.app/sharing-image.png",
-    "buttonTitle": "🎰 Spin Now",
-    "aspectRatio": "1.91:1",
     "splashImageUrl": "https://spinmoney.vercel.app/splash.png",
     "splashBackgroundColor": "#0f172a",
-    "screenshotUrls": ["https://spinmoney.vercel.app/sharing-image.png"],
-    "tags": ["casino", "game", "ethereum", "vrf", "base", "miniapp"],
+    "subtitle": "Provably fair crypto gaming",
+    "tagline": "Spin. Win. Claim.",
     "primaryCategory": "games",
+    "tags": [
+      "crypto",
+      "gaming",
+      "casino",
+      "ethereum",
+      "base",
+      "vrf",
+      "chainlink",
+      "provably-fair"
+    ],
+    "requiredChains": ["eip155:8453"],
     "requiredCapabilities": [
       "actions.signIn",
       "wallet.getEthereumProvider"
-    ]
+    ],
+    "canonicalDomain": "spinmoney.vercel.app",
+    "heroImageUrl": "https://spinmoney.vercel.app/sharing-image.png",
+    "ogTitle": "Spinning Money - Spin to Win ETH!",
+    "ogDescription": "🎰 Provably fair crypto gaming on Base. Every spin grows the prize pool!",
+    "ogImageUrl": "https://spinmoney.vercel.app/sharing-image.png",
+    "screenshotUrls": [
+      "https://spinmoney.vercel.app/sharing-image.png"
+    ],
+    "castShareUrl": "https://spinmoney.vercel.app/share",
+    "webhookUrl": "https://spinmoney.vercel.app/api/webhook"
   }
 }

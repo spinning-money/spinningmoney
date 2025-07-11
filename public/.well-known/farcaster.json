@@ -1,8 +1,9 @@
 {
+  "version": 1,
   "name": "Spinning Money",
-  "description": " Spin the wheel and win ETH! Provably fair crypto gaming on Base. Every spin grows the prize pool - the more you play, the bigger the jackpot gets! All spins contribute to the pool and YOU could be the next big winner!",
   "iconUrl": "https://spinmoney.vercel.app/icon.png",
   "homeUrl": "https://spinmoney.vercel.app",
+  "description": "Spin the wheel and win ETH! Provably fair crypto gaming on Base. Every spin grows the prize pool - the more you play, the bigger the jackpot gets! All spins contribute to the pool and YOU could be the next big winner! ",
   "splashImageUrl": "https://spinmoney.vercel.app/splash.png",
   "splashBackgroundColor": "#0f172a",
   "app_id": "spinning-money",
@@ -13,33 +14,5 @@
   "tags": ["casino", "gaming", "ethereum", "base", "chainlink", "vrf", "provably-fair"],
   "screenshots": [
     "https://spinmoney.vercel.app/sharing-image.png"
-  ],
-  "heroImageUrl": "https://spinmoney.vercel.app/sharing-image.png",
-  "version": "1",
-  "platform": "web",
-  "blockchain": "base",
-  "ogImageUrl": "https://spinmoney.vercel.app/sharing-image.png",
-  "castShareUrl": "https://spinmoney.vercel.app/share",
-  "author": {
-    "name": "Spinning Money Team",
-    "url": "https://spinmoney.vercel.app"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/spinning-money/farcmoney"
-  },
-  "license": "MIT",
-  "webhookUrl": "https://spinmoney.vercel.app/api/webhook",
-  "canonicalDomain": "spinmoney.vercel.app",
-  "miniapp": {
-    "name": "Spinning Money",
-    "version": "1",
-    "description": " Spin the wheel and win ETH! Provably fair crypto gaming on Base.",
-    "icon": "https://spinmoney.vercel.app/icon.png",
-    "home": "https://spinmoney.vercel.app",
-    "splash": "https://spinmoney.vercel.app/splash.png",
-    "permissions": ["ethereum"],
-    "chains": ["base"],
-    "features": ["wallet_connect", "ethereum_transactions"]
-  }
+  ]
 }

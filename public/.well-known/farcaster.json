@@ -15,7 +15,7 @@
     "https://spinmoney.vercel.app/sharing-image.png"
   ],
   "heroImageUrl": "https://spinmoney.vercel.app/sharing-image.png",
-  "version": "1.0.0",
+  "version": "1",
   "platform": "web",
   "blockchain": "base",
   "ogImageUrl": "https://spinmoney.vercel.app/sharing-image.png",
@@ -33,8 +33,8 @@
   "canonicalDomain": "spinmoney.vercel.app",
   "miniapp": {
     "name": "Spinning Money",
-    "version": "1.0.0",
-    "description": "🎰 Spin the wheel and win ETH! Provably fair crypto gaming on Base.",
+    "version": "1",
+    "description": " Spin the wheel and win ETH! Provably fair crypto gaming on Base.",
     "icon": "https://spinmoney.vercel.app/icon.png",
     "home": "https://spinmoney.vercel.app",
     "splash": "https://spinmoney.vercel.app/splash.png",

@@ -86,10 +86,25 @@ function MainApp() {
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-[#181A20] to-[#232946] flex flex-col items-center justify-start pb-8 pt-safe-top">
       {/* Üst Bilgi */}
-      <div className="w-full flex flex-col items-center pt-6 pb-2 px-4 relative">
-        {/* Başlık ve Slogan */}
-        <h1 className="text-3xl font-extrabold text-white tracking-tight mb-1 drop-shadow-lg text-center">Spinning Money</h1>
-        <div className="text-base text-blue-200/90 font-medium mb-3 text-center tracking-wide" style={{letterSpacing: '0.02em'}}>Spin. Win. Claim. Provably fair crypto gaming.</div>
+      <div className="w-full flex flex-col items-center pt-8 pb-4 px-4 relative">
+        <h1
+          className="text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-green-300 to-blue-400 drop-shadow-lg text-center tracking-tight"
+          style={{ letterSpacing: '0.01em' }}
+        >
+          Spinning Money
+        </h1>
+        <div
+          className="mt-2 text-lg sm:text-xl font-semibold text-blue-200/90 bg-white/5 rounded-xl px-4 py-2 shadow-sm flex items-center gap-2 backdrop-blur-sm"
+          style={{ letterSpacing: '0.02em' }}
+        >
+          <span className="text-green-300 font-bold">Spin</span>
+          <span className="mx-1 text-blue-200">•</span>
+          <span className="text-yellow-200 font-bold">Win</span>
+          <span className="mx-1 text-blue-200">•</span>
+          <span className="text-pink-200 font-bold">Claim</span>
+          <span className="hidden sm:inline text-blue-300">|</span>
+          <span className="text-blue-100/80 hidden sm:inline">Provably fair crypto gaming.</span>
+        </div>
         {/* Cüzdan Badge */}
         {address && (
           <div className="mt-2 bg-green-600/90 text-white text-xs font-mono px-4 py-1 rounded-full shadow-md text-center">
@@ -130,6 +145,7 @@ function MainApp() {
           onConnect={connectFarcaster}
           onSpin={enhancedSpin}
           onClaim={claim}
+          spinState={spinState}
         />
       </div>
 

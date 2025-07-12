@@ -11,6 +11,7 @@ interface GameButtonsProps {
   onConnect: () => void;
   onSpin: () => void;
   onClaim: () => void;
+  spinState?: { isSpinning: boolean };
 }
 
 const GameButtons: React.FC<GameButtonsProps> = ({
@@ -22,7 +23,8 @@ const GameButtons: React.FC<GameButtonsProps> = ({
   claimedAmount,
   onConnect,
   onSpin,
-  onClaim
+  onClaim,
+  spinState
 }) => {
   const formatAmount = (amount: string) => {
     if (!amount || amount === '0') return '0.0000 ETH';
@@ -56,11 +58,15 @@ const GameButtons: React.FC<GameButtonsProps> = ({
       {/* Büyük Spin Butonu */}
       <button
         onClick={onSpin}
-        disabled={isLoading || !canSpin}
+        disabled={!canSpin || isLoading}
         className="w-full max-w-sm bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-6 px-8 rounded-2xl shadow-lg text-xl active:scale-95 transition-all duration-200 flex flex-col items-center gap-1"
       >
         <div className="text-2xl font-extrabold">
-          {isLoading ? '🎯 SPINNING...' : '🎰 SPIN TO WIN'}
+          {isLoading
+            ? '🎯 SPINNING...'
+            : spinState && spinState.isSpinning
+              ? 'Waiting for Chainlink VRF result...'
+              : '🎰 SPIN TO WIN'}
         </div>
         <div className="text-sm font-medium opacity-90">
           💎 0.0005 ETH

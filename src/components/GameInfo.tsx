@@ -38,31 +38,10 @@ const GameInfo: React.FC<GameInfoProps> = ({ totalPool, jackpot }) => {
 
         <div className="p-4 space-y-4">
           
-          {/* Pool & Jackpot Section */}
-          <div className="grid grid-cols-2 gap-3">
-            {/* Total Pool */}
-            <div className="bg-gradient-to-br from-blue-500/10 to-blue-600/20 rounded-xl p-3 border border-blue-500/20">
-              <div className="flex items-center gap-2 mb-1">
-                <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-xs">Ξ</span>
-                </div>
-                <h3 className="text-white font-semibold text-sm">Total Pool</h3>
-              </div>
-              <div className="text-lg font-bold text-blue-300">{totalPool} ETH</div>
-              <p className="text-blue-200/70 text-xs mt-1">Grows with every spin</p>
-            </div>
-
-            {/* Jackpot */}
-            <div className="bg-gradient-to-br from-yellow-500/10 to-yellow-600/20 rounded-xl p-3 border border-yellow-500/20">
-              <div className="flex items-center gap-2 mb-1">
-                <div className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-xs">🎰</span>
-                </div>
-                <h3 className="text-white font-semibold text-sm">Jackpot</h3>
-              </div>
-              <div className="text-lg font-bold text-yellow-300">{jackpot} ETH</div>
-              <p className="text-yellow-200/70 text-xs mt-1">Special bonus pool</p>
-            </div>
+          {/* How Jackpot Works */}
+          <div className="mb-6 text-sm text-yellow-100/90 bg-yellow-900/40 rounded-xl px-4 py-3 shadow-sm text-center font-semibold">
+            <span className="font-bold text-yellow-300">How Jackpot Works:</span><br/>
+            Every spin has a small chance to win a bonus Jackpot, no matter which segment you land on. If you win the Jackpot, you’ll see a special “JACKPOT WIN!” message and the bonus will be added to your claimable balance. The Jackpot is separate from the main wheel prizes and can be won together with any result—even “Try Again”!
           </div>
 
           {/* Jackpot Reward System */}

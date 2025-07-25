@@ -8,6 +8,8 @@ interface GameButtonsProps {
   canClaim: boolean;
   claimableAmount: string;
   claimedAmount?: string;
+  spinPrice: string;
+  network: 'base' | 'monad';
   onConnect: () => void;
   onSpin: () => void;
   onClaim: () => void;
@@ -21,18 +23,20 @@ const GameButtons: React.FC<GameButtonsProps> = ({
   canClaim,
   claimableAmount,
   claimedAmount,
+  spinPrice,
+  network,
   onConnect,
   onSpin,
   onClaim,
   spinState
 }) => {
   const formatAmount = (amount: string) => {
-    if (!amount || amount === '0') return '0.0000 ETH';
+    if (!amount || amount === '0') return `0.0000 ${network === 'monad' ? 'MON' : 'ETH'}`;
     try {
       const num = parseFloat(amount);
-      return `${num.toFixed(4)} ETH`;
+      return `${num.toFixed(4)} ${network === 'monad' ? 'MON' : 'ETH'}`;
     } catch {
-      return '0.0000 ETH';
+      return `0.0000 ${network === 'monad' ? 'MON' : 'ETH'}`;
     }
   };
 
@@ -65,11 +69,13 @@ const GameButtons: React.FC<GameButtonsProps> = ({
           {isLoading
             ? '🎯 SPINNING...'
             : spinState && spinState.isSpinning
-              ? 'Waiting for Chainlink VRF result...'
+              ? network === 'base' 
+                ? 'Waiting for Chainlink VRF result...'
+                : 'Waiting for result...'
               : '🎰 SPIN TO WIN'}
         </div>
         <div className="text-sm font-medium opacity-90">
-          💎 0.0005 ETH
+          💎 {spinPrice} {network === 'monad' ? 'MON' : 'ETH'}
         </div>
       </button>
 

@@ -14,6 +14,8 @@ export interface SpinState {
   targetAngle: number;
   prizeIndex?: number;
   resultReceived: boolean;
+  jackpotReward?: string;
+  currentRotation?: number;
 }
 
 export const useSpinEvents = (userAddress?: string) => {
@@ -145,7 +147,7 @@ export const useSpinEvents = (userAddress?: string) => {
       unwatchRef.current();
     }
 
-    // Listen for SpinResult events
+    // Listen for SpinResult events (Base network)
     const unwatch = client.watchEvent({
       address: CONTRACT_ADDRESS,
       event: parseAbiItem('event SpinResult(address indexed player, uint256 indexed requestId, uint256 reward, uint256 jpReward, uint8 prizeIndex)'),
@@ -177,6 +179,9 @@ export const useSpinEvents = (userAddress?: string) => {
 
     unwatchRef.current = unwatch;
 
+    // Note: Monad spin results are handled directly in SpinWheel component
+    // No need to handle them here to avoid conflicts
+
     return () => {
       if (unwatchRef.current) {
         unwatchRef.current();
@@ -184,6 +189,7 @@ export const useSpinEvents = (userAddress?: string) => {
       if (spinTimeoutRef.current) {
         clearTimeout(spinTimeoutRef.current);
       }
+
     };
   }, [userAddress]);
 

@@ -1,15 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { useFarcaster } from './hooks/useFarcaster';
+import { useMonad } from './hooks/useMonad';
 import { useSpinEvents } from './hooks/useSpinEvents';
+import { useMonadEvents } from './hooks/useMonadEvents';
 import { useFarcasterWallet } from './hooks/useFarcasterWallet';
+import { useChainId } from 'wagmi';
 import SpinWheel from './components/SpinWheel';
 import GameButtons from './components/GameButtons';
 import ShareButton from './components/ShareButton';
 import SharePage from './components/SharePage';
 import GameInfo from './components/GameInfo';
+import NetworkSelector from './components/NetworkSelector';
 
 function MainApp() {
+  const [activeNetwork, setActiveNetwork] = useState<'base' | 'monad'>('base');
+  const chainId = useChainId();
+  
   // Initialize Farcaster wallet detection
   const { 
     address, 
@@ -18,6 +25,41 @@ function MainApp() {
     connectFarcaster 
   } = useFarcasterWallet();
   
+  // Initialize hooks for both networks (always active)
+  const baseHook = useFarcaster();
+  const monadHook = useMonad();
+  const monadEvents = useMonadEvents();
+  
+  // Base network state
+  const [baseSpinning, setBaseSpinning] = useState(false);
+  const { spinState: baseSpinState, startSpin: baseStartSpin, setSpinState: setBaseSpinState } = useSpinEvents(address, () => {
+    console.log('🔄 Refreshing Base user data...');
+  });
+  
+  // Monad network state
+  const [monadSpinning, setMonadSpinning] = useState(false);
+  const [monadSpinState, setMonadSpinState] = useState({
+    isSpinning: false,
+    targetAngle: 0,
+    prizeIndex: undefined,
+    resultReceived: false,
+    currentRotation: 0
+  });
+  
+  // Update Monad spin state when result is received
+  useEffect(() => {
+    if (activeNetwork === 'monad' && monadEvents.latestSpinResult) {
+      console.log('🎯 Updating Monad spin state with result:', monadEvents.latestSpinResult);
+      setMonadSpinState(prev => ({
+        ...prev,
+        prizeIndex: monadEvents.latestSpinResult.prizeIndex,
+        resultReceived: true
+      }));
+    }
+  }, [monadEvents.latestSpinResult, activeNetwork]);
+  
+  // Get current network data
+  const currentHook = activeNetwork === 'base' ? baseHook : monadHook;
   const {
     isLoading,
     prizePool,
@@ -27,59 +69,73 @@ function MainApp() {
     userData,
     spin,
     claim,
-    refreshUserData, // Add this if available in useFarcaster hook
-  } = useFarcaster(); // Initialize first to get address
+  } = currentHook;
   
-  // Create refresh function
-  const refreshData = () => {
-    if (refreshUserData) {
-      refreshUserData();
-    } else {
-      // If refreshUserData is not available, we'll need to implement it
-      console.log('🔄 Refreshing user data...');
-      // Force a re-render by updating some state
-      // This is a fallback if the hook doesn't provide refreshUserData
+  // Check if wallet is on correct network
+  const isOnCorrectNetwork = () => {
+    if (activeNetwork === 'base') {
+      return chainId === 8453;
+    } else if (activeNetwork === 'monad') {
+      return chainId === 10143;
     }
+    return false;
   };
   
-  // Initialize spin events hook with user address and refresh callback
-  const { spinState, startSpin, setSpinState, checkRecentEvents } = useSpinEvents(address, refreshData);
-  
-  // Periodic refresh of user data (every 30 seconds)
-  useEffect(() => {
-    if (!isConnected || !address) return;
-    
-    const interval = setInterval(() => {
-      refreshData();
-    }, 30000);
-    
-    return () => clearInterval(interval);
-  }, [isConnected, address]);
+
   
   // Create enhanced spin function
   const enhancedSpin = async () => {
-    // Reset any previous result immediately
-    setSpinState({
-      isSpinning: false,
-      targetAngle: 0,
-      prizeIndex: undefined,
-      resultReceived: false
-    });
+    console.log(`🎯 Enhanced spin called for: ${activeNetwork}`);
     
-    // Start animation immediately when button is clicked
-    startSpin();
-    
-    try {
-      await spin(); // Execute blockchain transaction
-      console.log('✅ Spin transaction sent successfully');
-    } catch (error) {
-      console.error('❌ Spin transaction failed:', error);
-      // Stop spinning if transaction fails
-      setSpinState(prev => ({
-        ...prev,
+    if (activeNetwork === 'base') {
+      // Base network - use Base state
+      console.log('🎯 Base spin başlatılıyor...');
+      setBaseSpinState({
         isSpinning: false,
+        targetAngle: 0,
+        prizeIndex: undefined,
         resultReceived: false
-      }));
+      });
+      
+      baseStartSpin();
+      
+      try {
+        await spin();
+        console.log('✅ Base spin transaction sent successfully');
+      } catch (error) {
+        console.error('❌ Base spin transaction failed:', error);
+        setBaseSpinState(prev => ({
+          ...prev,
+          isSpinning: false,
+          resultReceived: false
+        }));
+      }
+    } else {
+      // Monad network - use Monad state
+      console.log('🎯 Monad spin başlatılıyor...');
+      // Clear previous result before starting new spin
+      monadEvents.clearLatestSpinResult();
+      setMonadSpinState({
+        isSpinning: true,
+        targetAngle: 0,
+        prizeIndex: undefined,
+        resultReceived: false,
+        currentRotation: 0
+      });
+      setMonadSpinning(true);
+      console.log('🎯 monadSpinning set to true');
+      
+      try {
+        await spin();
+        console.log('✅ Monad spin transaction sent successfully');
+      } catch (error) {
+        console.error('❌ Monad spin transaction failed:', error);
+        setMonadSpinning(false);
+        setMonadSpinState(prev => ({
+          ...prev,
+          isSpinning: false
+        }));
+      }
     }
   };
 
@@ -116,38 +172,82 @@ function MainApp() {
         )}
       </div>
 
+      {/* Network Selector */}
+      <NetworkSelector 
+        activeNetwork={activeNetwork} 
+        onNetworkChange={setActiveNetwork} 
+      />
+
       {/* Çark */}
       <div className="w-full flex justify-center items-center mb-6">
-        <SpinWheel spinState={spinState} totalPool={parseFloat(prizePool).toFixed(4)} jackpot={parseFloat(jackpotPool).toFixed(4)} />
-      </div>
-
-      {/* Chainlink VRF etiketi */}
-      <div className="w-full flex justify-center mb-6">
-        <a
-          href="https://vrf.chain.link/base#/side-drawer/subscription/base/17952329676849432097364691293412979287742510665681724364050779803330792847198"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-xs px-3 py-1 rounded-full bg-[#232946] text-blue-300 font-medium shadow border border-blue-400/30 flex items-center gap-1"
-        >
-          <span role="img" aria-label="link">🔗</span> Provably fair by Chainlink VRF
-        </a>
-      </div>
-
-      {/* Spin ve Claim Butonları */}
-      <div className="w-full flex flex-col items-center gap-3 px-4 mb-6">
-        <GameButtons
-          isConnected={isConnected}
-          isLoading={isLoading}
-          canSpin={!isPaused && !isLoading && !spinState.isSpinning}
-          canClaim={!!userData && parseFloat(userData.claimable) > 0 && !isLoading}
-          claimableAmount={userData ? userData.claimable : '0'}
-          claimedAmount={userData ? userData.claimed : '0'}
-          onConnect={connectFarcaster}
-          onSpin={enhancedSpin}
-          onClaim={claim}
-          spinState={spinState}
+        <SpinWheel 
+          spinState={activeNetwork === 'base' ? baseSpinState : monadSpinState} 
+          totalPool={parseFloat(prizePool).toFixed(4)} 
+          jackpot={parseFloat(jackpotPool).toFixed(4)} 
+          network={activeNetwork}
+          monadSpinResult={activeNetwork === 'monad' ? monadEvents.latestSpinResult : null}
+          onResultProcessed={activeNetwork === 'monad' ? monadEvents.clearLatestSpinResult : undefined}
+          monadSpinning={activeNetwork === 'monad' ? monadSpinning : false}
+          onMonadSpinComplete={activeNetwork === 'monad' ? () => {
+            console.log('🎯 Monad spin completed, setting monadSpinning to false');
+            setMonadSpinning(false);
+            setMonadSpinState(prev => ({
+              ...prev,
+              isSpinning: false
+            }));
+            // Clear the result after showing it
+            setTimeout(() => {
+              monadEvents.clearLatestSpinResult();
+              setMonadSpinState(prev => ({
+                ...prev,
+                prizeIndex: undefined,
+                resultReceived: false
+              }));
+            }, 5000); // Show result for 5 seconds
+          } : undefined}
         />
       </div>
+
+      {/* Chainlink VRF etiketi - sadece Base için göster */}
+      {activeNetwork === 'base' && (
+        <div className="w-full flex justify-center mb-6">
+          <a
+            href="https://vrf.chain.link/base#/side-drawer/subscription/base/17952329676849432097364691293412979287742510665681724364050779803330792847198"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs px-3 py-1 rounded-full bg-[#232946] text-blue-300 font-medium shadow border border-blue-400/30 flex items-center gap-1"
+          >
+            <span role="img" aria-label="link">🔗</span> Provably fair by Chainlink VRF
+          </a>
+        </div>
+      )}
+
+      {/* Monad Testnet etiketi - sadece Monad için göster */}
+      {activeNetwork === 'monad' && (
+        <div className="w-full flex justify-center mb-6">
+          <div className="text-xs px-3 py-1 rounded-full bg-[#232946] text-green-300 font-medium shadow border border-green-400/30 flex items-center gap-1">
+            <span role="img" aria-label="testnet">🧪</span> Monad Testnet - No Chainlink
+          </div>
+        </div>
+      )}
+
+              {/* Spin ve Claim Butonları */}
+        <div className="w-full flex flex-col items-center gap-3 px-4 mb-6">
+          <GameButtons
+            isConnected={isConnected}
+            isLoading={isLoading}
+            canSpin={!isPaused && !isLoading && !(activeNetwork === 'base' ? baseSpinState.isSpinning : monadSpinState.isSpinning) && isOnCorrectNetwork()}
+            canClaim={!!userData && parseFloat(userData.claimable) > 0 && !isLoading && isOnCorrectNetwork()}
+            claimableAmount={userData ? userData.claimable : '0'}
+            claimedAmount={userData ? userData.claimed : '0'}
+            spinPrice={spinPrice}
+            network={activeNetwork}
+            onConnect={connectFarcaster}
+            onSpin={enhancedSpin}
+            onClaim={claim}
+            spinState={activeNetwork === 'base' ? baseSpinState : monadSpinState}
+          />
+        </div>
 
       {/* Share Button */}
       <div className="w-full flex justify-center px-4">

@@ -1,6 +1,6 @@
 import { useAccount, useReadContract, useWriteContract, useChainId } from 'wagmi';
 import { SpinAndWinMonadABI, MONAD_CONTRACT_ADDRESS } from '../contracts/SpinAndWinMonad';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { formatEther } from 'viem';
 
 // Network connectivity test function
@@ -47,6 +47,7 @@ export const useMonad = () => {
   const { address, isConnected } = useAccount();
   const chainId = useChainId();
   const [isLoading, setIsLoading] = useState(false);
+  const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   // Test RPC connectivity on mount
   useEffect(() => {
@@ -60,28 +61,28 @@ export const useMonad = () => {
   console.log('🔍 Expected Chain ID: 10143 (Monad Testnet)');
   console.log('🔍 Contract Address:', MONAD_CONTRACT_ADDRESS);
 
-  // Read contract data
-  const { data: prizePool, error: prizePoolError } = useReadContract({
+  // Read contract data with refresh trigger
+  const { data: prizePool, error: prizePoolError, refetch: refetchPrizePool } = useReadContract({
     address: MONAD_CONTRACT_ADDRESS,
     abi: SpinAndWinMonadABI,
     functionName: 'prizePool',
   });
-  const { data: jackpotPool, error: jackpotPoolError } = useReadContract({
+  const { data: jackpotPool, error: jackpotPoolError, refetch: refetchJackpotPool } = useReadContract({
     address: MONAD_CONTRACT_ADDRESS,
     abi: SpinAndWinMonadABI,
     functionName: 'jackpotPool',
   });
-  const { data: spinPrice, error: spinPriceError } = useReadContract({
+  const { data: spinPrice, error: spinPriceError, refetch: refetchSpinPrice } = useReadContract({
     address: MONAD_CONTRACT_ADDRESS,
     abi: SpinAndWinMonadABI,
     functionName: 'SPIN_PRICE',
   });
-  const { data: isPaused, error: isPausedError } = useReadContract({
+  const { data: isPaused, error: isPausedError, refetch: refetchIsPaused } = useReadContract({
     address: MONAD_CONTRACT_ADDRESS,
     abi: SpinAndWinMonadABI,
     functionName: 'paused',
   });
-  const { data: userData, error: userDataError } = useReadContract({
+  const { data: userData, error: userDataError, refetch: refetchUserData } = useReadContract({
     address: MONAD_CONTRACT_ADDRESS,
     abi: SpinAndWinMonadABI,
     functionName: 'users',
@@ -95,6 +96,23 @@ export const useMonad = () => {
   console.log('🔍 Spin Price:', spinPrice, 'Error:', spinPriceError);
   console.log('🔍 Is Paused:', isPaused, 'Error:', isPausedError);
   console.log('🔍 User Data:', userData, 'Error:', userDataError);
+
+  // Refresh function to update all contract data
+  const refreshData = useCallback(async () => {
+    console.log('🔄 Refreshing Monad contract data...');
+    try {
+      await Promise.all([
+        refetchPrizePool(),
+        refetchJackpotPool(),
+        refetchSpinPrice(),
+        refetchIsPaused(),
+        refetchUserData()
+      ]);
+      console.log('✅ Monad contract data refreshed successfully');
+    } catch (error) {
+      console.error('❌ Error refreshing Monad contract data:', error);
+    }
+  }, [refetchPrizePool, refetchJackpotPool, refetchSpinPrice, refetchIsPaused, refetchUserData]);
 
   // Write contract
   const { writeContractAsync } = useWriteContract();
@@ -240,5 +258,6 @@ export const useMonad = () => {
     userData: formattedUserData,
     spin,
     claim,
+    refreshData,
   };
 }; 

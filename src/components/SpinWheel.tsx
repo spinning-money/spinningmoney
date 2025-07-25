@@ -67,21 +67,31 @@ const SpinWheel = ({ spinState, totalPool, jackpot, network, monadSpinResult, on
       
       const targetAngle = calculateTargetAngle(monadSpinResult.prizeIndex);
       
+      // Don't immediately set resultReceived to true - let it spin more
+      // Just store the target angle and prize index for later
       setLocalSpinState(prev => ({
         ...prev,
         targetAngle,
-        prizeIndex: monadSpinResult.prizeIndex,
-        resultReceived: true
+        prizeIndex: monadSpinResult.prizeIndex
+        // Don't set resultReceived: true yet
       }));
 
-      // Stop spinning after animation completes (same as Base)
+      // Let it spin for 2 more seconds before showing the result
       setTimeout(() => {
         setLocalSpinState(prev => ({
           ...prev,
-          isSpinning: false
+          resultReceived: true
         }));
-        onMonadSpinComplete?.();
-      }, 3000); // Match Base animation duration
+        
+        // Then stop after final animation
+        setTimeout(() => {
+          setLocalSpinState(prev => ({
+            ...prev,
+            isSpinning: false
+          }));
+          onMonadSpinComplete?.();
+        }, 2000); // 2 seconds for final animation
+      }, 2000); // 2 seconds of extra spinning after result
     }
   }, [monadSpinResult, network, segmentAngle, onMonadSpinComplete]);
   

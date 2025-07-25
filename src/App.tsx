@@ -46,18 +46,6 @@ function MainApp() {
     currentRotation: 0
   });
   
-  // Update Monad spin state when result is received
-  useEffect(() => {
-    if (activeNetwork === 'monad' && monadEvents.latestSpinResult) {
-      console.log('🎯 Updating Monad spin state with result:', monadEvents.latestSpinResult);
-      setMonadSpinState(prev => ({
-        ...prev,
-        prizeIndex: monadEvents.latestSpinResult.prizeIndex,
-        resultReceived: true
-      }));
-    }
-  }, [monadEvents.latestSpinResult, activeNetwork]);
-  
   // Get current network data
   const currentHook = activeNetwork === 'base' ? baseHook : monadHook;
   const {
@@ -69,7 +57,28 @@ function MainApp() {
     userData,
     spin,
     claim,
+    refreshData,
   } = currentHook;
+  
+  // Update Monad spin state when result is received
+  useEffect(() => {
+    if (activeNetwork === 'monad' && monadEvents.latestSpinResult) {
+      console.log('🎯 Updating Monad spin state with result:', monadEvents.latestSpinResult);
+      setMonadSpinState(prev => ({
+        ...prev,
+        prizeIndex: monadEvents.latestSpinResult.prizeIndex,
+        resultReceived: true
+      }));
+      
+      // Refresh Monad contract data when result is received
+      if (refreshData) {
+        console.log('🔄 Refreshing Monad data after spin result...');
+        setTimeout(() => {
+          refreshData();
+        }, 2000); // 2 saniye sonra refresh et (transaction'ın onaylanması için)
+      }
+    }
+  }, [monadEvents.latestSpinResult, activeNetwork, refreshData]);
   
   // Check if wallet is on correct network
   const isOnCorrectNetwork = () => {
@@ -195,15 +204,7 @@ function MainApp() {
               ...prev,
               isSpinning: false
             }));
-            // Clear the result after showing it
-            setTimeout(() => {
-              monadEvents.clearLatestSpinResult();
-              setMonadSpinState(prev => ({
-                ...prev,
-                prizeIndex: undefined,
-                resultReceived: false
-              }));
-            }, 5000); // Show result for 5 seconds
+            // Don't auto-clear the result - let user see it until next spin
           } : undefined}
         />
       </div>
@@ -244,7 +245,22 @@ function MainApp() {
             network={activeNetwork}
             onConnect={connectFarcaster}
             onSpin={enhancedSpin}
-            onClaim={claim}
+            onClaim={async () => {
+              try {
+                await claim();
+                console.log('✅ Claim transaction sent successfully');
+                
+                // Refresh data after claim for Monad network
+                if (activeNetwork === 'monad' && refreshData) {
+                  setTimeout(() => {
+                    console.log('🔄 Refreshing Monad data after claim...');
+                    refreshData();
+                  }, 3000); // 3 saniye sonra refresh et
+                }
+              } catch (error) {
+                console.error('❌ Claim transaction failed:', error);
+              }
+            }}
             spinState={activeNetwork === 'base' ? baseSpinState : monadSpinState}
           />
         </div>

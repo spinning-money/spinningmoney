@@ -8,8 +8,8 @@
     "allowedAddresses": ["0xcF1B5d6CD8e0bfd6B1a8B2c2ceAb0bc165EEE5B3"]
   },
   "miniapp": {
-    "version": "1",
-    "name": "Spinning Money",
+    "version": "1", 
+    "name": "Spinning money",
     "iconUrl": "https://spinmoney.vercel.app/icon.png",
     "homeUrl": "https://spinmoney.vercel.app",
     "splashImageUrl": "https://spinmoney.vercel.app/splash.png",

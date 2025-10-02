@@ -16,6 +16,7 @@
     "homeUrl": "https://spinmoney.vercel.app",
     "splashImageUrl": "https://spinmoney.vercel.app/splash.png",
     "splashBackgroundColor": "#0f172a",
+    "buttonTitle": "Open Spinning",
     "subtitle": "Provably fair crypto gaming",
     "description": "Spin the wheel and win ETH. Every spin grows the jackpot. Try your luck!",
     "tagline": "Spin. Win. Claim.",
